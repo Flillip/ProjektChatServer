@@ -7,6 +7,12 @@ pub fn build(b: *std.Build) void {
         .target = b.standardTargetOptions(.{}),
     });
 
+    const websocket_lib = b.addModule("websocket", .{
+        .source_file = .{ .path="./libs/websocket.zig/src/websocket.zig"}
+    });
+
+    exe.addModule("websocket", websocket_lib);
+
     b.installArtifact(exe);
 
     const run_exe = b.addRunArtifact(exe);
