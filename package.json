@@ -1,0 +1,24 @@
+{
+  "name": "ProjektChatServer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc-watch --onSuccess \"node dist/index.js\""
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "Flillip",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/ws": "^8.5.10",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.4.2"
+  }
+}
