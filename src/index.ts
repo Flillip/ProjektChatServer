@@ -1,32 +1,25 @@
 import 'dotenv/config'
-import { createServer } from 'http';
-import {WebSocketServer} from 'ws';
 
 import { error, info } from './logger.js';
+import { HttpServer } from './httpserver/httpServer.js';
+import { WSServer } from './websocket/webSocketServer.js';
 const PORT = Number(process.env.PORT || 3000);
 
-const server = createServer();
-const webSocketServer = new WebSocketServer({ server });
+const httpServer = new HttpServer(PORT);
+const webSocketServer = new WSServer(httpServer);
 
-webSocketServer.on('connection', (ws: WebSocketServer) => {
-    info("client connected");
+httpServer.listen();
 
-    ws.on("message", (message: Buffer) => {
-        console.log(message.toString());
-    })
+// const webSocketServer = new WebSocketServer({ server });
 
-    ws.on("close", () => {
-        console.log("client disconnected");
-    })
-});
+// webSocketServer.on('connection', (ws: WebSocketServer) => {
+//     info("client connected");
 
-server.listen(PORT);
+//     ws.on("message", (message: Buffer) => {
+//         console.log(message.toString());
+//     })
 
-server.on('error', (e: Error) => {
-    if (e.name === 'EADDRINUSE') {
-      error("port already in use")
-      process.exit(1);
-    }
-});
-
-info("listening on port: " + PORT)
+//     ws.on("close", () => {
+//         console.log("client disconnected");
+//     })
+// });
