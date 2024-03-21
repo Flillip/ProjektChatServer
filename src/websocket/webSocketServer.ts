@@ -3,6 +3,7 @@ import {WebSocketServer} from 'ws';
 import { HttpServer } from '../httpserver/httpServer.js';
 import { info } from '../logger.js';
 import { SocketConnection } from './socketConnection.js';
+import { Packet } from './packet.js';
 
 
 export class WSServer {
@@ -26,11 +27,16 @@ export class WSServer {
         info(`client connected!`);
 
         const socketConnection = new SocketConnection(socket, request, WSServer.instance);
-        if (this.connectedSockets == null) this.connectedSockets = new Set()
-        this.connectedSockets.add(socketConnection);
+        WSServer.instance.connectedSockets.add(socketConnection);
     }
 
     public socketDisconnected(socket: SocketConnection) {
         this.connectedSockets.delete(socket);
+    }
+
+    public broadCastToAll(packet: Packet) {
+        this.connectedSockets.forEach(socket => {
+            socket.send(packet);
+        });
     }
 }

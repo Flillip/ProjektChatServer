@@ -1,6 +1,5 @@
 import 'dotenv/config'
 
-import { error, info } from './logger.js';
 import { HttpServer } from './httpserver/httpServer.js';
 import { WSServer } from './websocket/webSocketServer.js';
 const PORT = Number(process.env.PORT || 3000);
