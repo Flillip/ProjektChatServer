@@ -14,17 +14,14 @@ export class SocketConnection {
         }
 
         this.sendMessage("greetings!");
+
+        this.socket.addEventListener('message', (ev: MessageEvent) => this.onMessage(ev));
     }
 
     private validateUser(): boolean {
         // validation yes yes
         if (this.request.headers["test"] !== "123") {
             return false; 
-        }
-
-        if (this.request.headers["asd"] === "123") {
-            info("broadcast!")
-            this.wsServer.broadCastToAll(new Packet(PacketType.MESSAGE, "broadcast!"));
         }
 
         return true;
@@ -47,5 +44,10 @@ export class SocketConnection {
     private close(): void {
         this.socket.close();
         this.wsServer.socketDisconnected(this);
+    }
+
+    private onMessage(ev: MessageEvent) {
+        const packet = new Packet(PacketType.MESSAGE, ev.data.toString());
+        this.wsServer.broadCastToAll(packet, this);
     }
 }

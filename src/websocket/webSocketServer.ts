@@ -34,8 +34,10 @@ export class WSServer {
         this.connectedSockets.delete(socket);
     }
 
-    public broadCastToAll(packet: Packet) {
+    public broadCastToAll(packet: Packet, ws: SocketConnection) {
         this.connectedSockets.forEach(socket => {
+            if (ws === socket) return;
+
             socket.send(packet);
         });
     }
