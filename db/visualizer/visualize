@@ -1,0 +1,15 @@
+#!/bin/bash
+# a small script to visualize the database
+# taken from: https://gitlab.com/Screwtapello/sqlite-schema-diagram/
+# modified by Flillip
+
+original_dir=$(pwd)
+cd "$(dirname "$0")"
+
+sqlite3 -list ../test.db < sqlite-schema-diagram.sql > schema.dot
+dot -Tsvg schema.dot > schema.svg
+xviewer schema.svg
+
+rm schema.dot schema.svg
+
+cd "$original_dir"

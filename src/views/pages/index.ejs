@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') -%>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    
+    <div class="index-div">
+        <h1>Welcome to Chat!</h1>
+        <p>Sign in to start chatting!</p>
+        <form action="" id="sing-in-form">
+            <p id="err" style="color: red;"></p>
+            <label for="username">Username</label><br>
+            <input type="text" name="username" id="username" placeholder="Your username..."><br>
+            <label for="password">Password</label><br>
+            <input type="password" name="password" id="password" placeholder="Your password..."><br>
+            <button type="submit" name="Sign in">Sign in</button>
+            <button type="submit" name="Sign up">Sign up</button>
+        </form>
+    </div>
+
+    <script src="/js/md5.min.js"></script>
+    <script src="/js/responseCodes.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

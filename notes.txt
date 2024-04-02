@@ -1,0 +1,48 @@
+TODO:
+
+GENERAL FRONTEND:
+	[x] Fetch new token when current one expires
+	[ ] Reconnect on server disconnect (setTimeout)
+
+SERVERS:
+	[x] Fetch user servers
+	[x] Render user servers
+	[x] Make user servers clickable
+	[x] Create server
+	[x] Join server
+	[x] Leave server
+
+CHAT:
+	[x] Connecting to the websocket server
+	[x] Send packets from user to server
+	[x] Send packets from server to user
+	[x] Render new messages
+	[ ] Get previous messages (build this html on server)
+	[ ] Route messages to correct servers
+	[ ] FIX global chat
+
+
+USERS:
+	[ ] Get server users
+	[ ] Get current active users in server
+	[ ] Sign out button functional
+
+
+NOTES:
+	· User can send messages to any chat. I don't validate user validity.
+
+THINGS THAT COULD BE BETTER:
+	· Instead of looping every ws. I should have a dictionary with keys being the servers and values being array of websockets connected to them.
+
+message = {
+	user,
+	message,
+	server it was sent in,
+	timestamp
+}
+
+global_msg => global guid
+local_msg => local guid
+
+
+

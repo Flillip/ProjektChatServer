@@ -5,18 +5,27 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc-watch --onSuccess \"node dist/index.js\""
+    "dev": "tsc-watch --onSuccess \"node --trace-uncaught dist/index.js\""
   },
   "type": "module",
   "keywords": [],
   "author": "Flillip",
   "license": "MIT",
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.1",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7",
+    "typesafe-typed-event": "^1.0.0",
     "ws": "^8.16.0"
   },
   "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^4.17.21",
     "@types/node": "^20.11.30",
+    "@types/sqlite3": "^3.1.11",
     "@types/ws": "^8.5.10",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.4.2"

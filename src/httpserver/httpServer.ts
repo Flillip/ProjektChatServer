@@ -1,14 +1,26 @@
-import { Server, createServer } from "http";
+import http from "http";
+import express from 'express';
 import { error, info } from "../logger.js";
+import routes from "./routes/index.js";
 
 export class HttpServer {
-    private server: Server;
+    private app: express.Express;
+    private server: http.Server;
 
     constructor(private port: number) {
-        this.server = createServer();
+        this.app = express();
+        this.server = http.createServer(this.app);
+
+        this.app.use(express.urlencoded({ extended: false }));
+        this.app.use(express.json());
+        this.app.use(express.static('./src/public'));
+        this.app.set('view engine', 'ejs');
+        this.app.set('views', './src/views');
+
+        routes(this.app);
     }
 
-    public getServer(): Server {
+    public getServer(): http.Server {
         return this.server;
     }
 
@@ -22,6 +34,6 @@ export class HttpServer {
             }
         });
 
-        info("Server listening on port " + this.port);
+        info("Server listening on http://127.0.0.1:" + this.port);
     }
 }

@@ -1,0 +1,84 @@
+:root {
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
+
+    --bottom-row-height: 10%;
+    --top-row-height: 90%;
+}
+
+.grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.grid > * {
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+#servers, #users, #server-info, #user-info {
+    width: 20%;
+    /* background-color: ; */
+    color: black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+#servers, #users {
+    height: var(--top-row-height);
+}
+
+#server-info, #user-info {
+    height: var(--bottom-row-height);
+}
+
+#main {
+    flex-grow: 1;
+    width: 59%;
+    height: var(--top-row-height);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* height: calc(100% - 50pt); */
+}
+
+.bottom-of-parent {
+    display: flex;
+    align-items: end;
+}
+
+#chat-box {
+    /* flex-grow: 1; */
+    width: 59%;
+    height: var(--bottom-row-height);
+    min-height: 35pt;
+    display: flex;
+    align-items: end;
+}
+
+#chat-box input {
+    height: 35pt;
+    font-size: 20px;
+    width: 100%;
+}
+
+#chat-box input:focus, #chat-box input:focus{
+    outline: none;
+}
+
+.message-text {
+    margin: 0;
+}
+
+a {
+    margin: 2px;
+}

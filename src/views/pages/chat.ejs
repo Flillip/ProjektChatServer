@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') -%>
+    <link rel="stylesheet" href="/css/chat.css">
+</head>
+<body>
+    
+    <div class="grid">
+        <div id="servers">
+            <h1 style="text-align: center;">Servers</h1>
+            <a href="/chat"><button>Global chat</button></a>
+            <div id="joined-servers"></div>
+        </div>
+        <div id="main">
+            
+        </div>
+        <div id="users">
+            <h1 style="text-align: center;">Users</h1>
+        </div>
+        <div id="server-info" class="bottom-of-parent">
+            <div>
+                <button onclick="leaveServer()">Leave current server</button>
+                <form action="" id="join-server-form" style="margin-top: 2px;" autocomplete="off">
+                    <input type="text" name="server" id="server" placeholder="Server name...">
+                    <button type="submit" name="create">Create server</button>
+                    <button type="submit" name="join">Join server</button>
+                </form>
+            </div>
+        </div>
+        <div id="chat-box">
+            <input type="text" name="chat" id="chat" placeholder="Type your message here...">
+        </div>
+        <div id="user-info" class="bottom-of-parent">
+            <div><button>Sign out</button></div>
+        </div>
+    </div>
+    
+    <script src="/js/responseCodes.js"></script>
+    <script src="/js/chat/chat.js"></script>
+    <script src="/js/chat/websocketHandler.js"></script>
+</body>
+</html>

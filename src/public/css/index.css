@@ -1,0 +1,24 @@
+.index-div {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    text-align: center;
+}
+
+.index-div h1 {
+    margin-bottom: 4pt;
+}
+
+.index-div p {
+    margin-top: 0;
+    margin-bottom: 8pt;
+}
+
+.index-div input {
+    margin-bottom: 4pt;
+}
+
+.index-div button {
+    margin-top: 4pt;
+}
