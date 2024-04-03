@@ -5,6 +5,7 @@
 
     --bottom-row-height: 10%;
     --top-row-height: 90%;
+    font-family: monospace !important;
 }
 
 .grid {
@@ -77,6 +78,7 @@
 
 .message-text {
     margin: 0;
+    font-size: 1.5rem;
 }
 
 a {

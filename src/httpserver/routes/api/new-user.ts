@@ -14,16 +14,15 @@ export default async function(req: express.Request, res: express.Response, next:
     
     const username = String(body["username"]);
     const password = String(body["password"]);
-    let anyError = false;
     
     const unique = await DatabaseMediator.instance.checkUniqueUsername(username)
         .catch((reason) => {
             error(reason);
             res.sendStatus(ResponseCode.InternalServerError);
-            anyError = true;
+            return undefined;
         });
     
-    if (anyError) return;
+    if (unique === undefined) return;
     if (!unique) {
         res.sendStatus(ResponseCode.Conflict);
         return;
@@ -33,10 +32,10 @@ export default async function(req: express.Request, res: express.Response, next:
         .catch((reason) => {
             error(reason);
             res.sendStatus(ResponseCode.BadRequest);
-            anyError = true;
+            return '';
         });
     
-    if (anyError) return;
+    if (userGuid === '') return;
 
     const secret = process.env.JWT_SECRET;
     if (!secret) {

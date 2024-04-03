@@ -13,7 +13,11 @@
             <div id="joined-servers"></div>
         </div>
         <div id="main">
-            
+            <% for (let i = 0; i < messages.length; i++) { %>
+                <div class="message">
+                    <p class="message-text"><%= messages[i] %></p>
+                </div>
+            <% } %>
         </div>
         <div id="users">
             <h1 style="text-align: center;">Users</h1>

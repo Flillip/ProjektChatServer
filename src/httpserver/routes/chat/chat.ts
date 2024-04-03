@@ -1,16 +1,31 @@
 import express from "express";
+import DatabaseMediator from "../../../database/databaseMediator.js";
+import { error } from "../../../logger.js";
 
-export default function(req: express.Request, res: express.Response, next: express.NextFunction): void {
-    // const chat = req.params["chat"];
-    // console.log("chat guid: " + chat)
+export default async function(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+    const serverGuid = req.params["chat"] ?? 'global';
+
+    const users = await getUsers(serverGuid);
+    const messages = await DatabaseMediator.instance.getServerMessages(serverGuid, 0);
+    const formatted = messages.map((msg) => msg.format());
     
-    // DatabaseEventBus.getServerMessagesEvent.emit( {server: chat, offset: 0, callback: (msgs, err) => {
-    //     DatabaseEventBus.getUserServersEvent.emit({ user: req["id"], callback: (servers, err) => {
+    res.render('./pages/chat', { messages: formatted, users: users });
+}
 
-    //         // code stuff
-    //     }});    
-    // }});
-
+async function getUsers(serverGuid: string): Promise<string[]> {
+    const userGuids: string[] = await DatabaseMediator.instance.getUserInServer(serverGuid)
+        .catch((reason) => {
+            error(reason);
+            return [];
+        });
     
-    res.render('./pages/chat', { test: "Hejsan svejsan" });
+    if (userGuids.length === 0) return;
+
+    const usernames: string[] = [];
+    for (let i = 0; i < userGuids.length; i++) {
+        const name = await DatabaseMediator.instance.getUsername(userGuids[i]);
+        usernames.push(name);
+    }
+
+    return usernames;
 }

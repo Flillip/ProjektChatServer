@@ -20,7 +20,7 @@ export class SocketConnection {
             return;
         }
 
-        const urlParams = new URLSearchParams(request.url.replace("/chat/", ""))
+        const urlParams = new URLSearchParams(request.url.replace("/", ""))
         this.serverGuid = urlParams.get("server") ?? 'global';
         console.log(this.serverGuid)
 
@@ -30,7 +30,7 @@ export class SocketConnection {
                     "Welcome!", 
                     "server", 
                     Math.round(new Date().getTime() / 1000),
-                    "global"
+                    ""
                 )
             )
         );
@@ -95,6 +95,7 @@ export class SocketConnection {
         switch (packet.type) {
             case PacketType.MESSAGE:
                 WebSocketEventBus.broadcastEvent.emit({packet: packet, socket: this, serverGuid: this.getServer() });
+                console.log(this.serverGuid);
 
                 const msgJSON = JSON.parse(packet.message);
                 const msg = new Message(msgJSON["message"], msgJSON["sender"], msgJSON["timestamp"], this.serverGuid);

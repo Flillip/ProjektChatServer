@@ -24,5 +24,4 @@ ApiRouter.route("/get-user-servers")
 ApiRouter.route("/get-username")
     .get(verifyToken, (await import("./get-username.js")).default);
 
-
 export default ApiRouter;

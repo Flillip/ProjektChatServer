@@ -22,16 +22,14 @@ export default async function(req: express.Request, res: express.Response, next:
         return;
     }
 
-    let anyError = false;
-
     const userGuid = await DatabaseMediator.instance.getUserGuid(username, password)
         .catch((reason) => {
             error(reason);
             res.sendStatus(ResponseCode.InternalServerError);
-            anyError = true;
+            return '';
         });
 
-    if (anyError) return;
+    if (userGuid === '') return;
     if (userGuid === undefined) {
         res.sendStatus(ResponseCode.Unauthorized);
         return;

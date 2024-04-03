@@ -221,7 +221,7 @@ checkTokenValid();
 
 let username = "";
 const userGuid = parseJwt(localStorage.getItem('token'))["id"];
-const serverGuid = window.location.pathname.replace('/chat/', '');
+const serverGuid = window.location.pathname.replace('/chat', '').replace('/', '') || 'global';
 console.log("user guid: " + userGuid);
 console.log("server guid: " + serverGuid);
 

@@ -112,7 +112,6 @@ export default class DatabaseMediator {
 
         for await (const guid of serverGuids) {
             const name = await this.getServerName(guid);
-            console.log(name);
             servers.push(new Server(name, guid));
         }
 
@@ -150,5 +149,14 @@ export default class DatabaseMediator {
         const res = await this.db.querySingleRow(query, params);
         return String(res["name"]);
     }
-    
+
+    public async getUserInServer(serverGuid: string): Promise<string[]> {
+        const query = "SELECT user_id FROM UserServers WHERE server_id = ?;";
+        const params = [ serverGuid ];
+
+        console.log(serverGuid)
+        const res = await this.db.executeQuery(query, params);
+
+        return res.map((val) => val["user_id"]);
+    }
 }

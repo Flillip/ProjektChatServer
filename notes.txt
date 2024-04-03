@@ -17,9 +17,11 @@ CHAT:
 	[x] Send packets from user to server
 	[x] Send packets from server to user
 	[x] Render new messages
-	[ ] Get previous messages (build this html on server)
-	[ ] Route messages to correct servers
-	[ ] FIX global chat
+	[x] Get previous messages (build this html on server)
+	[x] Route messages to correct servers
+	[x] FIX global chat
+	[ ] User connect message
+	[ ] User disconnect message
 
 
 USERS:
