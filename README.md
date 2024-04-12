@@ -1,11 +1,23 @@
-# Project chat
+# Project Chat
+## Description:
+This project is a chat application designed to facilitate communication between users.
 
-## how to run:
-``` sh
-$ npm i # to install dependencies
+## How to Run:
+Follow these steps to set up and run the project:
+
+Install dependencies:
+
+```sh
+$ npm install
 ```
+Run the development server:
+
 ```sh
 $ npm run dev
-or
-$ npm run build # to build the project
+```
+OR
+
+Build the project:
+```sh
+$ npm run build
 ```
